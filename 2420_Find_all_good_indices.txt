@@ -1,0 +1,24 @@
+class Solution:
+    def goodIndices(self, nums: List[int], k: int) -> List[int]:
+        #first let's create a non_increasing count ie we are precomputing
+        # again, we are checking how many are greater from that i or index
+        n = len(nums)
+        decreasing_count = [1] * n
+        for i in range(1,n):
+            if (nums[i - 1] >= nums[i]):
+                decreasing_count[i] = decreasing_count[i - 1] + 1
+        
+        # similarly from reverse we will check and calc count which are greater than that index
+        increasing_count = [1] * n
+        for i in range(n - 2, -1, -1):
+            if (nums[i + 1] >= nums[i]):
+                increasing_count[i] = increasing_count[i + 1] + 1
+        
+        # now we will start looping from k to len(nums) - k because at starting we need atleast k elements to satisfy the give conditions
+        # we also need one array to have good indices in it so let's create it
+        arr = []
+        for i in range(k, n - k):
+            if (decreasing_count[i - 1] >= k and increasing_count[i + 1] >= k):
+                arr.append(i)
+        return arr
+            
