@@ -4,7 +4,6 @@ def totalFruit(fruits):
     """
     Calculates the maximum number of fruits that can be collected from a row of trees
     using two baskets that can each hold only one type of fruit.
-
     This uses a sliding window approach to find the longest contiguous subarray
     with at most two distinct fruit types.
 
@@ -36,3 +35,4 @@ def totalFruit(fruits):
         max_len = max(max_len, right - left + 1)
 
     return max_len
+
